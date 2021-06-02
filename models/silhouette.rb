@@ -2,8 +2,9 @@ ActiveRecord::Base.establish_connection
 
 class Silhouette < ActiveRecord::Base
   
-  has_many :mateial_bottoms
-  has_many :material_tops
+  belongs_to :mateial_bottom
+  belongs_to :material_top
+  #has_manyかもしれない
   belongs_to :material_person
   
 end

@@ -12,32 +12,20 @@
     <script src="https://kit.fontawesome.com/b98052541d.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
 　　<link href="https://fonts.googleapis.com/css2?family=Damion&display=swap" rel="stylesheet">
+　　<link rel="stylesheet" href = "../style.css">
 　　
   </head>
   <body>
     <div class="container-fluid">
       <div class="row d-flex justify-content-center">
-        <div class = "card-body-new">
-          <form action="/new" method="post" enctype="multipart/form-data">
-            <h6 class = "text-left mb-3"><%= User.find(session[:user]).name %></h6>
-          
-            <div class = "new-body mt-3">
-              <textarea rows = "10" cols = "80" name = "body" placeholder = "内容"></textarea>
-            </div>
-          
+          <div class = "card-body-out">
             <div class = "card-body-in d-flex justify-content-center">
-              <a href = "/create_silhouette ">シルエット作成</a>
+                <form action = "/newbottom" method = "post" enctype = "multipart/form-data">
+                    <p><input type = "file" name = "file"></p>
+                    <input type = "submit" value = "POST">
+                </form>
             </div>
-          
-            <div class = "Post">
-              <i>
-                <button type = "submit" class="far fa-paper-plane" style="color: #f8f3ef"></button>
-               </i>
-            </div>
-            
-          </form>
-          
-        </div>
+          </div>
       </div>
     </div>
   </body>

@@ -30,22 +30,28 @@
               <a href = "/new ">新規作成</a>
             </div>
           </div>
-        <% end %>
-        
-        <% @contents.each do |content| %>
-        
-          <div class = "card-bottom col-lg-6 mb-2 mx-5">
-            <div class="card-body">
-              <div class = "card-body-icon-2 d-flex justify-content-end m-2">
-                <form action="/delete/<%= content.id %>" method="post">
-                  <i>
-                    <button type = "submit" class="far fa-trash-alt mr-2" style="color: #f8f3ef;"></button>
-                  </i>
-                </form>
-              </div>
-              <p class = "body_bottom"><%= content.body %></p>
+          
+          <div class = "card-body-out">
+            <div class = "card-body-in d-flex justify-content-center">
+              <a href = "/newbottom ">シルエット作成</a>
             </div>
           </div>
+        
+          <% @contents.each do |content| %>
+        
+            <div class = "card-bottom col-lg-6 mb-2 mx-5">
+              <div class="card-body">
+                <div class = "card-body-icon-2 d-flex justify-content-end m-2">
+                  <form action="/delete/<%= content.id %>" method="post">
+                    <i>
+                      <button type = "submit" class="far fa-trash-alt mr-2" style="color: #f8f3ef;"></button>
+                    </i>
+                  </form>
+                </div>
+                <p class = "body_bottom"><%= content.body %></p>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>

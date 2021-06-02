@@ -12,20 +12,20 @@
     <script src="https://kit.fontawesome.com/b98052541d.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
 　　<link href="https://fonts.googleapis.com/css2?family=Damion&display=swap" rel="stylesheet">
+　　<link rel="stylesheet" href = "../style.css">
 　　
   </head>
   <body>
     <div class="container-fluid">
       <div class="row d-flex justify-content-center">
-        <div class = "card-body">
-          <% unless session[:user] %>
-            <a href = "/signin">ログイン</a><a href = "/signup">新規登録</a><br>
-            <h2>未ログイン</h2>
-          <% else %>
-            <a href = "/signout">ログアウト</a>
-            <h2><%= User.find(session[:user]).introduction %>としてログイン</h2>
-          <% end %>
-        </div>
+          <div class = "card-body-out">
+            <div class = "card-body-in d-flex justify-content-center">
+                <form action = "/newtop" method = "post" enctype = "multipart/form-data">
+                    <p><input type = "file" name = "file"></p>
+                    <input type = "submit" value = "POST">
+                </form>
+            </div>
+          </div>
       </div>
     </div>
   </body>

@@ -18,18 +18,69 @@
     <div class="container-fluid">
       <div class="row d-flex justify-content-center">
         <div class = "card-body-new">
+          <form action= "/confirm" method="post">
+            <% @material_persons.each do |material_person| %>
+              <% unless material_person.material_person_url.empty? %>
+                <label><input type = "radio" name = "person" id = "person<%= material_person.id %>" value = "<%= material_person.material_person_url %>"><%= material_person.id %></label>
+                <img class = "person_img" src = "<%= material_person.material_person_url %>">
+              <% end %>
+        　　  <% end %>
+            
+        　　  <% @material_bottoms.each do |material_bottom| %>
+              <% unless material_bottom.material_bottom_url.empty? %>
+                <label><input type = "radio" name = "bottom" id = "bottom<%= material_bottom.id %>" value = "<%= material_bottom.material_bottom_url %>"><%= material_bottom.id %></label>
+                <img class = "bottom_img" src = "<%= material_bottom.material_bottom_url %>">
+              <% end %>
+        　　  <% end %>
+        　　
+        　　<p>
+              <label><input type = "radio" name = "bottom" id = "bottom1" value = "bottom1">1</label>
+              <label><input type = "radio" name = "bottom" id = "bottom2" value = "bottom2">2</label>
+              <label><input type = "radio" name = "bottom" id = "bottom3" value = "bottom3">3</label>
+              <label><input type = "radio" name = "bottom" id = "bottom4" value = "bottom4">4</label>
+              <label><input type = "radio" name = "bottom" id = "bottom5" value = "bottom5">5</label>
+            </p>
+            
+            <div class = "bottom_color">
+              <label><input type = "radio" name = "bottom_color" id = "black" value = "black">黒</label>
+              <label><input type = "radio" name = "bottom_color" id = "red" value = "red" >赤</label>
+              <label><input type = "radio" name = "bottom_color" id = "beije" value = "beije">ベージュ</label>
+              <label><input type = "radio" name = "bottom_color" id = "navyblue" value = "navyblue">紺</label>
+              <label><input type = "radio" name = "bottom_color" id = "charcoal" value = "charcoal">チャコール</label>
+              <label><input type = "radio" name = "bottom_color" id = "paletone" value = "paletone">ペールトーン</label>
+            </div>
           
-          <% @material_bottoms.each do |material_bottom| %>
-            <p><a><%= material_bottom.material_bottom_url %></a></p>
-          <% end %>
+            <% @material_tops.each do |material_top| %>
+              <p>
+                  <% unless material_top.material_top_url.empty? %>
+                    <label><input type = "radio" name = "top" id = "top<%= material_top.id %>" value = "<%= material_top.material_top_url %>"><%= material_top.id %></label>
+                    <img class = "top_img" src = "<%= material_top.material_top_url %>">
+                    
+                  <% end %>
+              </p>
+            <% end %>
+            
+            <p>
+              <label><input type = "radio" name = "top" id = "top1" value = "top1">1</label>
+              <label><input type = "radio" name = "top" id = "top2" value = "top2">2</label>
+              <label><input type = "radio" name = "top" id = "top3" value = "top3">3</label>
+              <label><input type = "radio" name = "top" id = "top4" value = "top4">4</label>
+              <label><input type = "radio" name = "top" id = "top5" value = "top5">5</label>
+            </p>
+            
+            <div class = "bottom_color">
+              <label><input type = "radio" name = "top_color" id = "black" value = "黒">黒</label>
+              <label><input type = "radio" name = "top_color" id = "red" value = "赤" >赤</label>
+              <label><input type = "radio" name = "top_color" id = "beije" value = "ベージュ">ベージュ</label>
+              <label><input type = "radio" name = "top_color" id = "navyblue" value = "紺">紺</label>
+              <label><input type = "radio" name = "top_color" id = "charcoal" value = "チャコール">チャコール</label>
+              <label><input type = "radio" name = "top_color" id = "paletone" value = "ペールトーン">ペールトーン</label>
+            </div>
           
-          
-          
-          <% @users.each do |user| %>
-            <p><a><%= user.introduction %></a></p>
-          <% end %>
-          
-          
+          <p>
+            <input type = "submit" value = "確認">
+          </p>
+          </form>
           
         </div>
       </div>

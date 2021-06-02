@@ -2,7 +2,19 @@ require 'bundler/setup'
 Bundler.require
 require 'sinatra/reloader' if development?
 
-require './models.rb'
+require './models/bottom.rb'
+require './models/contribution.rb'
+require './models/silhouette.rb'
+require './models/user.rb'
+
+before do
+    Dotenv.load
+    Cloudinary.config do |config|
+        config.cloud_name = ENV['CLOUD_NAME']
+        config.api_key = ENV['CLOUDINARY_API_KEY']
+        config.api_secret = ENV['CLOUDINARY_API_SECRET']
+    end
+end
 
 enable :sessions
 
@@ -27,11 +39,31 @@ get '/new' do
     erb :new
 end
 
+get '/newbottom' do
+    erb :newbottom
+end
+
+get '/newtop' do
+    erb :newtop
+end
+
+get '/newperson' do
+    erb :newperson
+end
+ 
 get '/create_silhouette' do
     @users = User.all
     @contributions = Contribution.all
     @material_bottoms = MaterialBottom.all
+    @material_tops = MaterialTop.all
+    @material_persons = MaterialPerson.all
     erb :silhouette
+end
+
+get '/confirm' do
+    @top = session[:top]
+    @bottom = session[:bottom]
+    erb :confirm
 end
 
 post '/signin' do
@@ -85,4 +117,65 @@ end
 post "/delete/:id" do
   Contribution.find(params[:id]).destroy
   redirect "/"
+end
+
+post '/confirm' do
+    session[:top] = params[:top]
+    session[:bottom] = params[:bottom]
+    
+    redirect '/confirm'
+end
+
+
+
+
+
+
+
+post "/newbottom" do
+    img_url = ''
+    if params[:file]
+        img = params[:file]
+        tempfile = img[:tempfile]
+        upload = Cloudinary::Uploader.upload(tempfile.path)
+        img_url = upload['url']
+    end
+    
+    MaterialBottom.create({
+        material_bottom_url: img_url
+    })
+    
+    redirect '/newbottom'
+end
+
+post "/newtop" do
+    img_url = ''
+    if params[:file]
+        img = params[:file]
+        tempfile = img[:tempfile]
+        upload = Cloudinary::Uploader.upload(tempfile.path)
+        img_url = upload['url']
+    end
+    
+    MaterialTop.create({
+        material_top_url: img_url
+    })
+    
+    redirect '/newtop'
+end
+
+post "/newperson" do
+    img_url = ''
+    if params[:file]
+        img = params[:file]
+        tempfile = img[:tempfile]
+        upload = Cloudinary::Uploader.upload(tempfile.path)
+        img_url = upload['url']
+    end
+    
+    MaterialPerson.create({
+        material_person_url: img_url
+    })
+    
+    redirect '/newperson'
 end

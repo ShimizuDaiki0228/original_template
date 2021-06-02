@@ -18,23 +18,10 @@
     <div class="container-fluid">
       <div class="row d-flex justify-content-center">
         <div class = "card-body-new">
-          <form action="/new" method="post" enctype="multipart/form-data">
-            <h6 class = "text-left mb-3"><%= User.find(session[:user]).name %></h6>
-          
-            <div class = "new-body mt-3">
-              <textarea rows = "10" cols = "80" name = "body" placeholder = "内容"></textarea>
-            </div>
-          
-            <div class = "card-body-in d-flex justify-content-center">
-              <a href = "/create_silhouette ">シルエット作成</a>
-            </div>
-          
-            <div class = "Post">
-              <i>
-                <button type = "submit" class="far fa-paper-plane" style="color: #f8f3ef"></button>
-               </i>
-            </div>
-            
+          <form action= "/confirm" method="post">
+            <h1><p>こちらでよろしいでしょうか</p></h1>
+            <img class = "bottom_img_dicided" src = "<%= @bottom %>">
+            <img class = "top_img_dicided" src = "<%= @top %>">
           </form>
           
         </div>
